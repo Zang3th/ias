@@ -1,6 +1,5 @@
 body{
     font-family: 'Baloo 2', cursive;   
-    font-size: 20px;
     background-color: #1b2029;
 }
 
@@ -12,7 +11,7 @@ body{
 #container-2{
     display: flex;
     flex-direction: row;
-    margin-top: 10px;
+    margin-top: 50px;
 }
 
 #pageHeader{
@@ -20,14 +19,15 @@ body{
     height: 10%;
     text-align: center;
     color: #d3cccc;
-    font-size: 24px;
+    font-size: 28px;
 }
 
 #sidebar{
     width: 20%;
     height: 90%;
     color: #d3cccc;
-    padding-left: 5px;
+    padding-left: 25px;
+    text-align: center;
 }
 
 #main{       
@@ -41,62 +41,58 @@ body{
 
 #mainHeader{
     padding: 5px;    
+    font-size: 26px;
 }
 
 #mainContent{
     padding: 5px;
-    margin-top: 75px;
-    margin-bottom: 75px;
-}
-
-#mainUpperBottom{
-    padding: 5px;
-}
-
-#mainLowerBottom{
-    padding: 5px;
+    font-size: 22px;
+    margin: 50px;
 }
 
 button{
-    width: 180px;
+    width: 60%;
     padding: 10px;
     border-radius: 0px 5px 0px 5px;
     margin: 10px;
     font-family: 'Baloo 2', cursive;   
-    font-size: 16px;
+    font-size: 18px;
     color: #1b2029;
 }
 
 .listButton{
-    width: 180px;
+    width: 12.0%;
     padding: 10px;
     border-radius: 0px 5px 0px 5px;
     border-color: #b3b3b3;
-    margin: 0px;
+    margin: 5px;
+    display: none;
 }
 
 .listField{
-    width: 180px;
+    width: 20%;
     padding: 5px;
     margin: 5px;
     border-radius: 0px 5px 0px 5px;
     border-color: #3b3b52;
     background-color: #3b3b52;
     font-family: 'Baloo 2', cursive;   
-    font-size: 14px;
+    font-size: 18px;
     color: #b3b3b3;
+    display: none;
 }
 
 .listSelect{
-    width: 193px;
+    width: 19%;
     padding: 5px;
     margin: 5px;
     border-radius: 0px 5px 0px 5px;
     border-color: #3b3b52;
     background-color: #3b3b52;
     font-family: 'Baloo 2', cursive;   
-    font-size: 14px;
+    font-size: 18px;
     color: #b3b3b3;
+    display: none;
 }
 
 button:hover{

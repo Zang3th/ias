@@ -1,37 +1,39 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>IAS Praktikum</title>
+        <title>IAS Bug Tracker</title>
         <meta charset="UTF-8" />
-        <link rel="stylesheet" href="../style/index.css" />      
-        <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap" rel="stylesheet">   
+        <link rel="stylesheet" href="index.css" />      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap" />   
     </head>
     <body>
         <div id="container-1">
             <div id="pageHeader">Bug Tracker | Tim Krüger | 1197031</div>
             <div id="container-2">
-            <div id="sidebar">
-                    <button id="Fehler">Fehlererfassung</button>
-                    <button id="ErrResolve">Fehlerbehebung</button>
-                    <button id="QSMitarbeiter">QS-Mitarbeiter</button>
-                    <button id="SWEntwickler">SW-Entwickler</button>
-                    <button id="Kategorie">Fehlerkategorien</button>
-                    <button id="Komponente">Komponenten</button>
+                <div id="sidebar">
+                    <button id="Error">Fehlererfassung</button>
+                    <button id="Resolve">Fehlerbehebung</button>
+                    <button id="QS">QS-Mitarbeiter</button>
+                    <button id="SW">SW-Entwickler</button>
+                    <button id="Category">Fehlerkategorien</button>
+                    <button id="Component">Komponenten</button>
                 </div>         
                 <div id="main">
                     <div id="mainHeader">Willkommen!</div>
                     <div id="mainContent">
-                            Bitte wählen Sie eine Option aus der linken Spalte!                    
+                            Bitte wählen Sie eine Option aus der linken Spalte!
                     </div>
-                    <div id="mainUpperBottom">
+                    <div id="mainFields">
                         <input class="listField" type="text" id="vorname"></input>
                         <input class="listField" type="text" id="name"></input>
                         <input class="listField" type="text" id="funktion"></input>
+                    </div> 
+                    <div id="mainSelects">
                         <select class="listSelect" id="select0"></select>
                         <select class="listSelect" id="select1"></select>
                         <select class="listSelect" id="select2"></select>      
-                    </div>    
-                    <div id="mainLowerBottom">                        
+                    </div> 
+                    <div id="mainButtons">                        
                         <button class="listButton" id="edit">Bearbeiten</button>
                         <button class="listButton" id="delete">Löschen</button>
                         <button class="listButton" id="save">Speichern</button>  
