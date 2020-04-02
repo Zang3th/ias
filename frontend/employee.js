@@ -1,10 +1,5 @@
 class Employee
 {
-    constructor()
-    {
-
-    }
-
     showEmployees()
     {        
         employee.showContent();
@@ -28,10 +23,10 @@ class Employee
         .then((data) => 
         {      
             //Create HTML-Content
-            //let output = templateEngine.createList(data);
+            let output = templateEngine.createEmployeeList(data);
 
             //Update Content
-            //document.getElementById('mainContent').innerHTML = output;
+            document.getElementById('mainContent').innerHTML = output;
         }) 
     }
 

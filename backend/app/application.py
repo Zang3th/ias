@@ -1,3 +1,4 @@
+from . import template
 from . import employee
 
 class Application_cl():
@@ -5,4 +6,5 @@ class Application_cl():
         self.currDir = currDir # Current filepath
 
         # Erstellen der Dispatcherklassen
-        self.employee_obj = employee.Employee_cl(self.currDir) 
+        self.template_obj = template.Template_cl(self.currDir)
+        self.employee_obj = employee.Employee_cl(self.currDir)        

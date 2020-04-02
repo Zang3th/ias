@@ -13,7 +13,7 @@ class Utility
             while (el.hasChildNodes()) newEl.appendChild(el.firstChild);
             el.parentNode.replaceChild(newEl, el);
         }
-    }
+    }    
 }
 
 utility = new Utility();

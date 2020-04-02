@@ -17,21 +17,25 @@ if __name__ == '__main__':
             'tools.staticdir.on': True,
             'tools.staticdir.dir': './frontend',
             'tools.staticdir.index': 'index.html'
-        },
-        '/generator': {
+        },         
+        '/template': {
             'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
             'tools.response_headers.on': True,
-            'tools.response_headers.headers': [('Content-Type', 'text/plain')],
-        },
+            'tools.response_headers.headers': [('Content-Type', 'text/plain')]
+        },       
         '/employee': {
-            'request.dispatch': cherrypy.dispatch.MethodDispatcher()
+            'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
+            'tools.response_headers.on': True,
+            'tools.response_headers.headers': [('Content-Type', 'text/plain')]
         }
     }
 
     currDir = os.path.abspath(os.getcwd()) # Aktuellen Dateipfad ziehen
     webapp = Generator_cl(currDir) # Erstellen der Webapp
 
-     # Zuweisen der Dispatcherklassen
+    # Zuweisen der Dispatcherklassen
+    webapp.template = webapp.app.template_obj
     webapp.employee = webapp.app.employee_obj
+    
 
     cherrypy.quickstart(webapp, '/', conf) # Server starten    

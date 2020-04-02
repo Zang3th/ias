@@ -1,0 +1,37 @@
+{
+   "1": {
+      "name": "Mustermann",
+      "vorname": "Max",
+      "funktion": "QS-Mitarbeiter"
+   },
+   "2": {
+      "name": "Musterfrau",
+      "vorname": "Marta",
+      "funktion": "QS-Mitarbeiter"
+   },
+   "3": {
+      "name": "Pan",
+      "vorname": "Peter",
+      "funktion": "QS-Mitarbeiter"
+   },
+   "4": {
+      "name": "Muster",
+      "vorname": "Malte",
+      "funktion": "QS-Mitarbeiter"
+   },
+   "5": {
+      "name": "Vogel",
+      "vorname": "Karl",
+      "funktion": "QS-Mitarbeiter"
+   },
+   "6": {
+      "name": "Fritz",
+      "vorname": "Thomas",
+      "funktion": "QS-Mitarbeiter"
+   },
+   "7": {
+      "name": "Pannen",
+      "vorname": "Peter",
+      "funktion": "QS-Mitarbeiter"
+   }
+}
