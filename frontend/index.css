@@ -11,7 +11,7 @@ body{
 #container-2{
     display: flex;
     flex-direction: row;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 #pageHeader{
@@ -20,6 +20,7 @@ body{
     text-align: center;
     color: #d3cccc;
     font-size: 28px;
+    border: 2px solid #d3cccc;
 }
 
 #sidebar{
@@ -28,6 +29,7 @@ body{
     color: #d3cccc;
     padding-left: 25px;
     text-align: center;
+    border: 2px solid #d3cccc;
 }
 
 #main{       
@@ -39,15 +41,16 @@ body{
     text-align: center;
 }
 
-#mainHeader{
-    padding: 5px;    
+#mainHeader{ 
     font-size: 26px;
+    border: 2px solid #d3cccc;
+    margin-bottom: 5px;
 }
 
 #mainContent{
-    padding: 5px;
     font-size: 22px;
-    margin: 50px;
+    margin-bottom: 20px;
+    border: 2px solid #d3cccc;
 }
 
 button{
@@ -61,30 +64,17 @@ button{
 }
 
 .listButton{
-    width: 12.0%;
-    padding: 10px;
+    width: 15.0%;    
+    margin: 5px;
     border-radius: 0px 5px 0px 5px;
     border-color: #b3b3b3;
-    margin: 5px;
     display: none;
+    font-size: 18px;
 }
 
 .listField{
-    width: 20%;
-    padding: 5px;
-    margin: 5px;
-    border-radius: 0px 5px 0px 5px;
-    border-color: #3b3b52;
-    background-color: #3b3b52;
-    font-family: 'Baloo 2', cursive;   
-    font-size: 18px;
-    color: #b3b3b3;
-    display: none;
-}
-
-.listSelect{
-    width: 21%;
-    padding: 5px;
+    width: 18%;
+    padding: 10px;
     margin: 5px;
     border-radius: 0px 5px 0px 5px;
     border-color: #3b3b52;
@@ -105,6 +95,18 @@ button:hover{
     color: #d3cccc;
 }
 
+#mainLowerArea{
+    margin-top: 20px;
+}
+
+#mainUpperArea{
+    border: 2px solid #d3cccc;
+}
+
+#mainLowerArea{
+    border: 2px solid #d3cccc;
+}
+
 /*Placeholder zentrieren*/
 ::-webkit-input-placeholder {
     text-align: center;
@@ -121,3 +123,8 @@ button:hover{
  :-ms-input-placeholder {  
     text-align: center; 
  }
+
+ li{
+    display: table;
+    margin-left: 38%;
+}

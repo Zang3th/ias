@@ -2,10 +2,7 @@ class Employee
 {
     showEmployees()
     {        
-        employee.showContent();
-        employee.showFields();
-        employee.showSelect();
-        employee.showButtons();
+        employee.showContent();        
     }
 
     showContent()
@@ -27,6 +24,9 @@ class Employee
 
             //Update Content
             document.getElementById('mainContent').innerHTML = output;
+
+            employee.showFields();
+            employee.showButtons();
         }) 
     }
 
@@ -36,21 +36,19 @@ class Employee
         document.getElementById('field0').style.display="inline";
         document.getElementById('field1').style.display="inline";
         document.getElementById('field2').style.display="inline";
+        document.getElementById('field3').style.display="inline";
 
         //Placeholder anpassen
         document.getElementById('field0').placeholder = "Vorname";
-        document.getElementById('field1').placeholder = "Name"
+        document.getElementById('field1').placeholder = "Name";
         document.getElementById('field2').placeholder = "Funktion";
+        document.getElementById('field3').placeholder = "ID";
 
         //Alte Werte löschen
         document.getElementById('field0').value = "";
-        document.getElementById('field1').value = ""
+        document.getElementById('field1').value = "";
         document.getElementById('field2').value = "";
-    }
-
-    showSelect()
-    {
-        document.getElementById('select1').style.display="inline";
+        document.getElementById('field3').value = "";
     }
 
     showButtons()
