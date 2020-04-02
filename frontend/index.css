@@ -83,7 +83,7 @@ button{
 }
 
 .listSelect{
-    width: 19%;
+    width: 21%;
     padding: 5px;
     margin: 5px;
     border-radius: 0px 5px 0px 5px;
@@ -104,3 +104,20 @@ button:hover{
     background-color: #1b2029;
     color: #d3cccc;
 }
+
+/*Placeholder zentrieren*/
+::-webkit-input-placeholder {
+    text-align: center;
+ }
+ 
+ :-moz-placeholder { /* Firefox 18- */
+    text-align: center;  
+ }
+ 
+ ::-moz-placeholder {  /* Firefox 19+ */
+    text-align: center;  
+ }
+ 
+ :-ms-input-placeholder {  
+    text-align: center; 
+ }
