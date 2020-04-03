@@ -33,5 +33,10 @@
       "name": "Pannen",
       "vorname": "Peter",
       "funktion": "QS-Mitarbeiter"
+   },
+   "8": {
+      "name": "Maske",
+      "vorname": "Manfred",
+      "funktion": "QS-Mitarbeiter"
    }
 }

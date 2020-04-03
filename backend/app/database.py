@@ -20,3 +20,20 @@ class Database_cl():
 
         except:
             print("Can't open File:", self.filename, "at", self.filepath)  
+
+    def writeToFile(self):
+        try:            
+            with open(self.filepath, 'w', encoding='utf-8') as file:                 
+                json.dump(self.data_json, file, indent=3)        
+                print(self.filename, "dumped successfully")
+                file.close()
+
+        except:
+            print("Can't open File:", self.filename, "at", self.filepath, "for dumping!")  
+
+    def add(self, newEntry_p):
+        self.readInFile() # Check for updates or changes 
+        currentKey = len(self.data_json.keys()) # Number of keys in use
+        self.data_json[currentKey + 1] = newEntry_p # Save new entry in json object
+        self.data_str = json.dumps(self.data_json) # Data as string
+        self.writeToFile() # Update json file and employee string object

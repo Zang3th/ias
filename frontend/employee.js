@@ -33,10 +33,8 @@ class Employee
     showFields()
     {
         //Felder anzeigen
-        document.getElementById('field0').style.display="inline";
-        document.getElementById('field1').style.display="inline";
-        document.getElementById('field2').style.display="inline";
-        document.getElementById('field3').style.display="inline";
+        document.getElementById('mainUpperArea').style.display="flow";
+        document.getElementById('mainLowerArea').style.display="flow";
 
         //Placeholder anpassen
         document.getElementById('field0').placeholder = "Vorname";
@@ -79,7 +77,38 @@ class Employee
 
     confirmSave()
     {
+        let vorname = document.getElementById('field0').value;
+        let name = document.getElementById('field1').value;
+        let funktion = document.getElementById('field2').value;
 
+        if(vorname === "" || name === "" || funktion === "")
+        {
+            alert("Sie müssen jedes Feld ausfüllen!");
+        }
+        else
+        {
+            employee.save(vorname, name, funktion);
+        }
+    }
+
+    save(vorname, name, funktion)
+    {
+        let mitarbeiter = vorname + "." + name + "." + funktion;
+
+        fetch('/employee' + '/' + mitarbeiter, 
+        {
+            method: 'POST'
+        })
+        .then((result) => result.json())
+        .then((data) => 
+        {                
+    
+            //Create HTML-Content
+            let output = templateEngine.createEmployeeList(data);
+
+            //Update Content
+            document.getElementById('mainContent').innerHTML = output;
+        }) 
     }
 
     confirmEdit()
