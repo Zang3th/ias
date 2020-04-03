@@ -10,10 +10,15 @@ class Employee_cl():
     def GET(self, parameter_1):
         if parameter_1 == "all":
             return self.database_obj.data_str
+        else:
+            return self.database_obj.getByID(parameter_1)
 
     def POST(self, mitarbeiter):
         self.createNewEntry(mitarbeiter)
         return self.database_obj.data_str
+
+    def DELETE(self, mitarbeiter_ID):
+        return self.database_obj.delete(mitarbeiter_ID)
 
     def createNewEntry(self, mitarbeiter_p):
         mitarbeiter_arr = self.parseEmployee(mitarbeiter_p)
@@ -34,4 +39,4 @@ class Employee_cl():
                 l += 1 # Increment "word"-counter
 
         mitarbeiter_arr[l] = entry # Final push to include last element
-        return mitarbeiter_arr               
+        return mitarbeiter_arr     

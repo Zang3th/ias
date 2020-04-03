@@ -20,7 +20,7 @@ class Employee
         .then((data) => 
         {      
             //Create HTML-Content
-            let output = templateEngine.createEmployeeList(data);
+            let output = templateEngine.showEmployeeList(data);
 
             //Update Content
             document.getElementById('mainContent').innerHTML = output;
@@ -72,7 +72,41 @@ class Employee
 
     confirmDelete()
     {
+        let ID = document.getElementById('field3').value;
+        if(ID)
+        {
+            employee.delete(ID);
+        }
+        else
+        {
+            alert("Bitte geben Sie eine ID an!");
+        }  
+    }
 
+    delete(ID)
+    {
+        //GET-Request for one single employee
+        fetch('/employee/' + ID, 
+        {
+            method: 'DELETE'
+        })
+        .then((result) => result.json())
+        .then((data) => 
+        {       
+            if(data === "ERROR")
+            {
+                alert("Der Mitarbeiter mit der ID " + ID + " wurde nicht gefunden!");
+            }
+            else
+            {
+                //Create HTML-Content
+                let output = templateEngine.showEmployeeList(data);
+
+                //Update Content
+                document.getElementById('mainContent').innerHTML = output;
+            }
+            
+        })
     }
 
     confirmSave()
@@ -83,7 +117,7 @@ class Employee
 
         if(vorname === "" || name === "" || funktion === "")
         {
-            alert("Sie müssen jedes Feld ausfüllen!");
+            alert("Bitte füllen Sie alle Felder aus!");
         }
         else
         {
@@ -104,7 +138,7 @@ class Employee
         {                
     
             //Create HTML-Content
-            let output = templateEngine.createEmployeeList(data);
+            let output = templateEngine.showEmployeeList(data);
 
             //Update Content
             document.getElementById('mainContent').innerHTML = output;
@@ -118,7 +152,42 @@ class Employee
 
     confirmGetByID()
     {
+        let ID = document.getElementById('field3').value;
+        if(ID)
+        {
+            employee.getByID(ID);
+        }
+        else
+        {
+            alert("Bitte geben Sie eine ID an!");
+        }        
+    }
 
+    getByID(ID)
+    {
+        //GET-Request for one single employee
+        fetch('/employee/' + ID, 
+        {
+            method: 'GET',
+            cache: 'no-cache'
+        })
+        .then((result) => result.json())
+        .then((data) => 
+        {       
+            if(data === "ERROR")
+            {
+                alert("Der Mitarbeiter mit der ID " + ID + " wurde nicht gefunden!");
+            }
+            else
+            {
+                //Create HTML-Content
+                let output = templateEngine.showSingleEmployee(data, ID);
+
+                //Update Content
+                document.getElementById('mainContent').innerHTML = output;
+            }
+            
+        })
     }
 }
 

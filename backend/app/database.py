@@ -36,4 +36,25 @@ class Database_cl():
         currentKey = len(self.data_json.keys()) # Number of keys in use
         self.data_json[currentKey + 1] = newEntry_p # Save new entry in json object
         self.data_str = json.dumps(self.data_json) # Data as string
-        self.writeToFile() # Update json file and employee string object
+        self.writeToFile() # Update json file
+
+    def getByID(self, ID):
+        self.readInFile() # Check for updates or changes
+        if ID in self.data_json:
+            data_json = self.data_json[ID]
+            data_str = json.dumps(data_json)
+            return data_str
+        else:
+            print("Entry", ID, "in", self.filename, "was not found!")
+            return json.dumps("ERROR")      
+
+    def delete(self, ID):
+        self.readInFile() # Check for updates or changes
+        if ID in self.data_json:
+            del self.data_json[ID] # Delete employee     
+            self.data_str = json.dumps(self.data_json) # Data as string
+            self.writeToFile() # Update json file
+            return self.data_str
+        else:
+            print("Entry", ID, "in", self.filename, "was not found!")
+            return json.dumps("ERROR")        

@@ -1,5 +1,3 @@
-var template;
-
 class TemplateEngine
 {
     constructor()
@@ -17,11 +15,11 @@ class TemplateEngine
         .then((result) => result.text())
         .then((data) => 
         {      
-            template = data;            
+            this.template = data;            
         }) 
     }
 
-    createEmployeeList(data)
+    showEmployeeList(data)
     {
         let output = '';
         let length = Object.keys(data).length;
@@ -31,7 +29,7 @@ class TemplateEngine
         {
             if(data[i])
             {
-                let template_s = new String(template);
+                let template_s = new String(this.template);
                 template_s = template_s.replace("data0", i);
                 template_s = template_s.replace("data1", data[i].vorname);
                 template_s = template_s.replace("data2", data[i].name);
@@ -44,6 +42,24 @@ class TemplateEngine
                 `;
             }    
         }
+        return output;
+    }
+
+    showSingleEmployee(data, ID)
+    {
+        let output = '';
+        let template_s = new String(this.template);
+
+        template_s = template_s.replace("data0", ID);
+        template_s = template_s.replace("data1", data.vorname);
+        template_s = template_s.replace("data2", data.name);
+        template_s = template_s.replace("data3", data.funktion);
+        template_s = template_s.replace("data4", "");
+
+        output += 
+        `  
+            ${template_s}
+        `;
         return output;
     }
 }
