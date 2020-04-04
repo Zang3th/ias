@@ -1,14 +1,17 @@
+var currentData; //Current iteration of the data
+var editedID; //Which ID are we currently editing
+var editedData; //Are we currently editing -> did the data get edited?
+
 class Employee
 {
     showEmployees()
     {        
-        employee.showContent();        
+        employee.showContent();      
     }
 
     showContent()
-    {
-        //Change header
-        document.getElementById('mainHeader').innerHTML = "QS-Mitarbeiter";
+    {        
+        document.getElementById('mainHeader').innerHTML = "QS-Mitarbeiter"; //Change header
 
         //GET-Request for all the employee data
         fetch('/employee/all', 
@@ -18,12 +21,11 @@ class Employee
         })
         .then((result) => result.json())
         .then((data) => 
-        {      
-            //Create HTML-Content
-            let output = templateEngine.showEmployeeList(data);
-
-            //Update Content
-            document.getElementById('mainContent').innerHTML = output;
+        {    
+            let output = templateEngine.showEmployeeList(data); //Create HTML-Content
+            currentData = data; //Current iteration of the data
+           
+            document.getElementById('mainContent').innerHTML = output;  //Update Content
 
             employee.showFields();
             employee.showButtons();
@@ -85,7 +87,6 @@ class Employee
 
     delete(ID)
     {
-        //GET-Request for one single employee
         fetch('/employee/' + ID, 
         {
             method: 'DELETE'
@@ -99,11 +100,11 @@ class Employee
             }
             else
             {
-                //Create HTML-Content
-                let output = templateEngine.showEmployeeList(data);
-
-                //Update Content
-                document.getElementById('mainContent').innerHTML = output;
+                
+                let output = templateEngine.showEmployeeList(data); //Create HTML-Content
+                currentData = data; //Current iteration of the data
+                
+                document.getElementById('mainContent').innerHTML = output; //Update Content
             }
             
         })
@@ -115,14 +116,29 @@ class Employee
         let name = document.getElementById('field1').value;
         let funktion = document.getElementById('field2').value;
 
-        if(vorname === "" || name === "" || funktion === "")
+        if(editedData == true)
         {
-            alert("Bitte füllen Sie alle Felder aus!");
+            if(vorname === "" || name === "" || funktion === "")
+            {
+                alert("Bitte füllen Sie alle Felder aus!");
+            }
+            else
+            {
+                employee.edit(vorname, name, funktion);
+            }
         }
         else
         {
-            employee.save(vorname, name, funktion);
+            if(vorname === "" || name === "" || funktion === "")
+            {
+                alert("Bitte füllen Sie alle Felder aus!");
+            }
+            else
+            {
+                employee.save(vorname, name, funktion);
+            }
         }
+        
     }
 
     save(vorname, name, funktion)
@@ -135,19 +151,64 @@ class Employee
         })
         .then((result) => result.json())
         .then((data) => 
-        {                
-    
-            //Create HTML-Content
-            let output = templateEngine.showEmployeeList(data);
-
-            //Update Content
-            document.getElementById('mainContent').innerHTML = output;
+        {    
+            let output = templateEngine.showEmployeeList(data); //Create HTML-Content
+            currentData = data; //Current iteration of the data
+            
+            document.getElementById('mainContent').innerHTML = output; //Update Content
         }) 
     }
 
     confirmEdit()
     {
+        let ID = document.getElementById('field3').value;        
+        if(ID)
+        {
+            if(currentData[ID])
+            {
+                document.getElementById('field0').value = currentData[ID].vorname;
+                document.getElementById('field1').value = currentData[ID].name;
+                document.getElementById('field2').value = currentData[ID].funktion;
 
+                editedID = ID;
+                editedData = true;
+            }
+            else
+            {
+                alert("Angegebene ID ist nicht gültig!");
+            }
+        }
+        else
+        {
+            alert("Bitte geben Sie eine ID an!");
+        }  
+    }
+
+    edit(vorname, name, funktion)
+    {
+        let mitarbeiter = editedID + "." + vorname + "." + name + "." + funktion;
+
+        fetch('/employee' + '/' + mitarbeiter, 
+        {
+            method: 'PUT'
+        })
+        .then((result) => result.json())
+        .then((data) => 
+        {         
+            if(data === "ERROR")
+            {
+                alert("Der Mitarbeiter mit der ID " + ID + "konnte nicht editiert werden!");
+            }
+            else
+            {                
+                let output = templateEngine.showEmployeeList(data); //Create HTML-Content
+                currentData = data; //Current iteration of the data
+                editedData = false;
+                editedID = 0;
+
+                document.getElementById('mainContent').innerHTML = output; //Update Content
+            }           
+        }) 
     }
 
     confirmGetByID()
@@ -165,7 +226,6 @@ class Employee
 
     getByID(ID)
     {
-        //GET-Request for one single employee
         fetch('/employee/' + ID, 
         {
             method: 'GET',
@@ -179,12 +239,11 @@ class Employee
                 alert("Der Mitarbeiter mit der ID " + ID + " wurde nicht gefunden!");
             }
             else
-            {
-                //Create HTML-Content
-                let output = templateEngine.showSingleEmployee(data, ID);
-
-                //Update Content
-                document.getElementById('mainContent').innerHTML = output;
+            {                
+                let output = templateEngine.showSingleEmployee(data, ID); //Create HTML-Content
+                currentData = data; //Current iteration of the data
+                
+                document.getElementById('mainContent').innerHTML = output; //Update Content
             }
             
         })
