@@ -19,7 +19,7 @@ class TemplateEngine
         }) 
     }
 
-    showEmployeeList(data)
+    showPersonList(data)
     {
         let output = '';
         let length = Object.keys(data).length;
@@ -45,7 +45,7 @@ class TemplateEngine
         return output;
     }
 
-    showSingleEmployee(data, ID)
+    showSinglePerson(data, ID)
     {
         let output = '';
         let template_s = new String(this.template);

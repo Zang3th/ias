@@ -1,20 +1,20 @@
-var currentEmployeeData; //Current iteration of the data
-var editedEmployeeID; //Which ID are we currently editing
-var editedEmployeeData; //Are we currently editing -> did the data get edited?
+var currentDeveloperData; //Current iteration of the data
+var editedDeveloperID; //Which ID are we currently editing
+var editedDeveloperData; //Are we currently editing -> did the data get edited?
 
-class Employee
+class Developer
 {
-    showEmployees()
+    showDevelopers()
     {        
-        employee.showContent();      
+        developer.showContent();      
     }
 
     showContent()
     {        
-        document.getElementById('mainHeader').innerHTML = "QS-Mitarbeiter"; //Change header
+        document.getElementById('mainHeader').innerHTML = "SW-Entwickler"; //Change header
 
-        //GET-Request for all the employee data
-        fetch('/employee/all', 
+        //GET-Request for all the developer data
+        fetch('/developer/all', 
         {
             method: 'GET',
             cache: 'no-cache'
@@ -23,12 +23,12 @@ class Employee
         .then((data) => 
         {    
             let output = templateEngine.showPersonList(data); //Create HTML-Content
-            currentEmployeeData = data; //Current iteration of the data
+            currentDeveloperData = data; //Current iteration of the data
            
             document.getElementById('mainContent').innerHTML = output;  //Update Content
 
-            employee.showFields();
-            employee.showButtons();
+            developer.showFields();
+            developer.showButtons();
         }) 
     }
 
@@ -60,10 +60,10 @@ class Employee
         utility.recreateNode(document.getElementById('getSomethingByID'));
 
         //Den Buttons neue Eventlistener zuteilen
-        document.getElementById('delete').addEventListener('click', employee.confirmDelete);    
-        document.getElementById('save').addEventListener('click', employee.confirmSave);
-        document.getElementById('edit').addEventListener('click', employee.confirmEdit);
-        document.getElementById('getSomethingByID').addEventListener('click', employee.confirmGetByID);
+        document.getElementById('delete').addEventListener('click', developer.confirmDelete);    
+        document.getElementById('save').addEventListener('click', developer.confirmSave);
+        document.getElementById('edit').addEventListener('click', developer.confirmEdit);
+        document.getElementById('getSomethingByID').addEventListener('click', developer.confirmGetByID);
 
         //Buttons anzeigen
         document.getElementById('edit').style.display="inline";
@@ -77,7 +77,7 @@ class Employee
         let ID = document.getElementById('field3').value;
         if(ID)
         {
-            employee.delete(ID);
+            developer.delete(ID);
         }
         else
         {
@@ -87,7 +87,7 @@ class Employee
 
     delete(ID)
     {
-        fetch('/employee/' + ID, 
+        fetch('/developer/' + ID, 
         {
             method: 'DELETE'
         })
@@ -96,13 +96,13 @@ class Employee
         {       
             if(data === "ERROR")
             {
-                alert("Der Mitarbeiter mit der ID " + ID + " wurde nicht gefunden!");
+                alert("Der Entwickler mit der ID " + ID + " wurde nicht gefunden!");
             }
             else
             {
                 
                 let output = templateEngine.showPersonList(data); //Create HTML-Content
-                currentEmployeeData = data; //Current iteration of the data
+                currentDeveloperData = data; //Current iteration of the data
                 
                 document.getElementById('mainContent').innerHTML = output; //Update Content
             }
@@ -116,7 +116,7 @@ class Employee
         let name = document.getElementById('field1').value;
         let funktion = document.getElementById('field2').value;
 
-        if(editedEmployeeData == true)
+        if(editedDeveloperData == true)
         {
             if(vorname === "" || name === "" || funktion === "")
             {
@@ -124,7 +124,7 @@ class Employee
             }
             else
             {
-                employee.edit(vorname, name, funktion);
+                developer.edit(vorname, name, funktion);
             }
         }
         else
@@ -135,7 +135,7 @@ class Employee
             }
             else
             {
-                employee.save(vorname, name, funktion);
+                developer.save(vorname, name, funktion);
             }
         }
         
@@ -143,9 +143,9 @@ class Employee
 
     save(vorname, name, funktion)
     {
-        let mitarbeiter = vorname + "." + name + "." + funktion;
+        let entwickler = vorname + "." + name + "." + funktion;
 
-        fetch('/employee' + '/' + mitarbeiter, 
+        fetch('/developer' + '/' + entwickler, 
         {
             method: 'POST'
         })
@@ -153,7 +153,7 @@ class Employee
         .then((data) => 
         {    
             let output = templateEngine.showPersonList(data); //Create HTML-Content
-            currentEmployeeData = data; //Current iteration of the data
+            currentDeveloperData = data; //Current iteration of the data
             
             document.getElementById('mainContent').innerHTML = output; //Update Content
         }) 
@@ -164,14 +164,14 @@ class Employee
         let ID = document.getElementById('field3').value;        
         if(ID)
         {
-            if(currentEmployeeData[ID])
+            if(currentDeveloperData[ID])
             {
-                document.getElementById('field0').value = currentEmployeeData[ID].vorname;
-                document.getElementById('field1').value = currentEmployeeData[ID].name;
-                document.getElementById('field2').value = currentEmployeeData[ID].funktion;
+                document.getElementById('field0').value = currentDeveloperData[ID].vorname;
+                document.getElementById('field1').value = currentDeveloperData[ID].name;
+                document.getElementById('field2').value = currentDeveloperData[ID].funktion;
 
-                editedEmployeeID = ID;
-                editedEmployeeData = true;
+                editedDeveloperID = ID;
+                editedDeveloperData = true;
             }
             else
             {
@@ -186,9 +186,9 @@ class Employee
 
     edit(vorname, name, funktion)
     {
-        let mitarbeiter = editedEmployeeID + "." + vorname + "." + name + "." + funktion;
+        let entwickler = editedDeveloperID + "." + vorname + "." + name + "." + funktion;
 
-        fetch('/employee' + '/' + mitarbeiter, 
+        fetch('/developer' + '/' + entwickler, 
         {
             method: 'PUT'
         })
@@ -197,14 +197,14 @@ class Employee
         {         
             if(data === "ERROR")
             {
-                alert("Der Mitarbeiter mit der ID " + ID + "konnte nicht editiert werden!");
+                alert("Der Entwickler mit der ID " + ID + "konnte nicht editiert werden!");
             }
             else
             {                
                 let output = templateEngine.showPersonList(data); //Create HTML-Content
-                currentEmployeeData = data; //Current iteration of the data
-                editedEmployeeData = false;
-                editedEmployeeID = 0;
+                currentDeveloperData = data; //Current iteration of the data
+                editedDeveloperData = false;
+                editedDeveloperID = 0;
 
                 document.getElementById('mainContent').innerHTML = output; //Update Content
             }           
@@ -216,7 +216,7 @@ class Employee
         let ID = document.getElementById('field3').value;
         if(ID)
         {
-            employee.getByID(ID);
+            developer.getByID(ID);
         }
         else
         {
@@ -226,7 +226,7 @@ class Employee
 
     getByID(ID)
     {
-        fetch('/employee/' + ID, 
+        fetch('/developer/' + ID, 
         {
             method: 'GET',
             cache: 'no-cache'
@@ -236,12 +236,12 @@ class Employee
         {       
             if(data === "ERROR")
             {
-                alert("Der Mitarbeiter mit der ID " + ID + " wurde nicht gefunden!");
+                alert("Der Entwickler mit der ID " + ID + " wurde nicht gefunden!");
             }
             else
             {                
                 let output = templateEngine.showSinglePerson(data, ID); //Create HTML-Content
-                currentEmployeeData = data; //Current iteration of the data
+                currentDeveloperData = data; //Current iteration of the data
                 
                 document.getElementById('mainContent').innerHTML = output; //Update Content
             }
@@ -250,5 +250,5 @@ class Employee
     }
 }
 
-employee = new Employee();
-document.getElementById('QS').addEventListener('click', employee.showEmployees);
+developer = new Developer();
+document.getElementById('SW').addEventListener('click', developer.showDevelopers);

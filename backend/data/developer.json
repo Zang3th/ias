@@ -1,0 +1,37 @@
+{
+   "1": {
+      "name": "Schweizer",
+      "vorname": "Nicole",
+      "funktion": "SW-Entwickler"
+   },
+   "2": {
+      "name": "Klein",
+      "vorname": "Antje",
+      "funktion": "SW-Entwickler"
+   },
+   "3": {
+      "name": "Feierabend",
+      "vorname": "Klaudia",
+      "funktion": "SW-Entwickler"
+   },
+   "4": {
+      "name": "Dresdner",
+      "vorname": "Susanne",
+      "funktion": "SW-Entwickler"
+   },
+   "5": {
+      "name": "Gruenewald",
+      "vorname": "Marina",
+      "funktion": "SW-Entwickler"
+   },
+   "6": {
+      "name": "Pfeiffer",
+      "vorname": "Katharina",
+      "funktion": "SW-Entwickler"
+   },
+   "7": {
+      "name": "Wechslermann",
+      "vorname": "Timo",
+      "funktion": "SW-Entwickler"
+   }
+}

@@ -19,14 +19,13 @@ if __name__ == '__main__':
             'tools.staticdir.index': 'index.html'
         },         
         '/template': {
-            'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
-            'tools.response_headers.on': True,
-            'tools.response_headers.headers': [('Content-Type', 'text/plain')]
+            'request.dispatch': cherrypy.dispatch.MethodDispatcher()
         },       
         '/employee': {
-            'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
-            'tools.response_headers.on': True,
-            'tools.response_headers.headers': [('Content-Type', 'text/plain')]
+            'request.dispatch': cherrypy.dispatch.MethodDispatcher()
+        },       
+        '/developer': {
+            'request.dispatch': cherrypy.dispatch.MethodDispatcher()
         }
     }
 
@@ -36,6 +35,6 @@ if __name__ == '__main__':
     # Zuweisen der Dispatcherklassen
     webapp.template = webapp.app.template_obj
     webapp.employee = webapp.app.employee_obj
-    
+    webapp.developer = webapp.app.developer_obj    
 
     cherrypy.quickstart(webapp, '/', conf) # Server starten    
