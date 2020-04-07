@@ -26,6 +26,9 @@ if __name__ == '__main__':
         },       
         '/developer': {
             'request.dispatch': cherrypy.dispatch.MethodDispatcher()
+        },       
+        '/category': {
+            'request.dispatch': cherrypy.dispatch.MethodDispatcher()
         }
     }
 
@@ -35,6 +38,7 @@ if __name__ == '__main__':
     # Zuweisen der Dispatcherklassen
     webapp.template = webapp.app.template_obj
     webapp.employee = webapp.app.employee_obj
-    webapp.developer = webapp.app.developer_obj    
+    webapp.developer = webapp.app.developer_obj  
+    webapp.category = webapp.app.category_obj  
 
     cherrypy.quickstart(webapp, '/', conf) # Server starten    

@@ -4,12 +4,10 @@ from . import database
 @cherrypy.expose
 class Developer_cl():
     def __init__(self, currDir):
-        print("Dev erstellt")
         self.currDir = currDir
         self.database_obj = database.Database_cl(self.currDir, "developer.json")
 
-    def GET(self, parameter_1):        
-        print("GET dev")
+    def GET(self, parameter_1):     
         if parameter_1 == "all":
             return self.database_obj.data_str
         else:

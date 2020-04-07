@@ -1,20 +1,20 @@
-var currentDeveloperData; //Current iteration of the data
-var editedDeveloperID; //Which ID are we currently editing
-var editedDeveloperData; //Are we currently editing -> did the data get edited?
+var currentCategoryData; //Current iteration of the data
+var editedCategoryID; //Which ID are we currently editing
+var editedCategoryData; //Are we currently editing -> did the data get edited?
 
-class Developer
+class Category
 {
-    showDevelopers()
+    showCategories()
     {        
-        developer.showContent();      
+        category.showContent();      
     }
 
     showContent()
     {        
-        document.getElementById('mainHeader').innerHTML = "SW-Entwickler"; //Change header
+        document.getElementById('mainHeader').innerHTML = "Fehlerkategorien"; //Change header
 
-        //GET-Request for all the developer data
-        fetch('/developer/all', 
+        //GET-Request for all the category data
+        fetch('/category/all', 
         {
             method: 'GET',
             cache: 'no-cache'
@@ -22,13 +22,13 @@ class Developer
         .then((result) => result.json())
         .then((data) => 
         {    
-            let output = templateEngine.showPersonList(data); //Create HTML-Content
-            currentDeveloperData = data; //Current iteration of the data
+            let output = templateEngine.showCategoryList(data); //Create HTML-Content
+            currentCategoryData = data; //Current iteration of the data
            
             document.getElementById('mainContent').innerHTML = output;  //Update Content
 
-            developer.showFields();
-            developer.showButtons();
+            category.showFields();
+            category.showButtons();
         }) 
     }
 
@@ -38,17 +38,15 @@ class Developer
         document.getElementById('mainUpperArea').style.display="flow";
         document.getElementById('mainLowerArea').style.display="flow";
 
-        //Vornamesfeld einblenden
-        document.getElementById('field0').style.display = "inline";
-        
-        //Placeholder anpassen
-        document.getElementById('field0').placeholder = "Vorname";
-        document.getElementById('field1').placeholder = "Name";
-        document.getElementById('field2').placeholder = "Funktion";
+        //Vornamesfeld ausblenden
+        document.getElementById('field0').style.display = "none";
+
+        //Placeholder anpassen        
+        document.getElementById('field1').placeholder = "Beschreibung";
+        document.getElementById('field2').placeholder = "Schweregrad";
         document.getElementById('field3').placeholder = "ID";
 
         //Alte Werte löschen
-        document.getElementById('field0').value = "";
         document.getElementById('field1').value = "";
         document.getElementById('field2').value = "";
         document.getElementById('field3').value = "";
@@ -63,10 +61,10 @@ class Developer
         utility.recreateNode(document.getElementById('getSomethingByID'));
 
         //Den Buttons neue Eventlistener zuteilen
-        document.getElementById('delete').addEventListener('click', developer.confirmDelete);    
-        document.getElementById('save').addEventListener('click', developer.confirmSave);
-        document.getElementById('edit').addEventListener('click', developer.confirmEdit);
-        document.getElementById('getSomethingByID').addEventListener('click', developer.confirmGetByID);
+        document.getElementById('delete').addEventListener('click', category.confirmDelete);    
+        document.getElementById('save').addEventListener('click', category.confirmSave);
+        document.getElementById('edit').addEventListener('click', category.confirmEdit);
+        document.getElementById('getSomethingByID').addEventListener('click', category.confirmGetByID);
 
         //Buttons anzeigen
         document.getElementById('edit').style.display="inline";
@@ -80,7 +78,7 @@ class Developer
         let ID = document.getElementById('field3').value;
         if(ID)
         {
-            developer.delete(ID);
+            category.delete(ID);
         }
         else
         {
@@ -90,7 +88,7 @@ class Developer
 
     delete(ID)
     {
-        fetch('/developer/' + ID, 
+        fetch('/category/' + ID, 
         {
             method: 'DELETE'
         })
@@ -99,13 +97,13 @@ class Developer
         {       
             if(data === "ERROR")
             {
-                alert("Der Entwickler mit der ID " + ID + " wurde nicht gefunden!");
+                alert("Die Kategorie mit der ID " + ID + " wurde nicht gefunden!");
             }
             else
             {
                 
-                let output = templateEngine.showPersonList(data); //Create HTML-Content
-                currentDeveloperData = data; //Current iteration of the data
+                let output = templateEngine.showCategoryList(data); //Create HTML-Content
+                currentCategoryData = data; //Current iteration of the data
                 
                 document.getElementById('mainContent').innerHTML = output; //Update Content
             }
@@ -115,48 +113,47 @@ class Developer
 
     confirmSave()
     {
-        let vorname = document.getElementById('field0').value;
-        let name = document.getElementById('field1').value;
-        let funktion = document.getElementById('field2').value;
+        let beschreibung = document.getElementById('field1').value;
+        let schweregrad = document.getElementById('field2').value;
 
-        if(editedDeveloperData == true)
+        if(editedCategoryData == true)
         {
-            if(vorname === "" || name === "" || funktion === "")
+            if(beschreibung === "" || schweregrad === "")
             {
                 alert("Bitte füllen Sie alle Felder aus!");
             }
             else
             {
-                developer.edit(vorname, name, funktion);
+                category.edit(beschreibung, schweregrad);
             }
         }
         else
         {
-            if(vorname === "" || name === "" || funktion === "")
+            if(beschreibung === "" || schweregrad === "")
             {
                 alert("Bitte füllen Sie alle Felder aus!");
             }
             else
             {
-                developer.save(vorname, name, funktion);
+                category.save(beschreibung, schweregrad);
             }
         }
         
     }
 
-    save(vorname, name, funktion)
+    save(beschreibung, schweregrad)
     {
-        let entwickler = vorname + "." + name + "." + funktion;
+        let kategorie = beschreibung + "." + schweregrad;
 
-        fetch('/developer' + '/' + entwickler, 
+        fetch('/category' + '/' + kategorie, 
         {
             method: 'POST'
         })
         .then((result) => result.json())
         .then((data) => 
         {    
-            let output = templateEngine.showPersonList(data); //Create HTML-Content
-            currentDeveloperData = data; //Current iteration of the data
+            let output = templateEngine.showCategoryList(data); //Create HTML-Content
+            currentCategoryData = data; //Current iteration of the data
             
             document.getElementById('mainContent').innerHTML = output; //Update Content
         }) 
@@ -167,14 +164,13 @@ class Developer
         let ID = document.getElementById('field3').value;        
         if(ID)
         {
-            if(currentDeveloperData[ID])
+            if(currentCategoryData[ID])
             {
-                document.getElementById('field0').value = currentDeveloperData[ID].vorname;
-                document.getElementById('field1').value = currentDeveloperData[ID].name;
-                document.getElementById('field2').value = currentDeveloperData[ID].funktion;
+                document.getElementById('field1').value = currentCategoryData[ID].beschreibung;
+                document.getElementById('field2').value = currentCategoryData[ID].schweregrad;
 
-                editedDeveloperID = ID;
-                editedDeveloperData = true;
+                editedCategoryID = ID;
+                editedCategoryData = true;
             }
             else
             {
@@ -187,11 +183,11 @@ class Developer
         }  
     }
 
-    edit(vorname, name, funktion)
+    edit(beschreibung, schweregrad)
     {
-        let entwickler = editedDeveloperID + "." + vorname + "." + name + "." + funktion;
+        let kategorie = editedCategoryID + "." + beschreibung + "." + schweregrad;
 
-        fetch('/developer' + '/' + entwickler, 
+        fetch('/category' + '/' + kategorie, 
         {
             method: 'PUT'
         })
@@ -200,14 +196,14 @@ class Developer
         {         
             if(data === "ERROR")
             {
-                alert("Der Entwickler mit der ID " + ID + "konnte nicht editiert werden!");
+                alert("Die Kategorie mit der ID " + ID + "konnte nicht editiert werden!");
             }
             else
             {                
-                let output = templateEngine.showPersonList(data); //Create HTML-Content
-                currentDeveloperData = data; //Current iteration of the data
-                editedDeveloperData = false;
-                editedDeveloperID = 0;
+                let output = templateEngine.showCategoryList(data); //Create HTML-Content
+                currentCategoryData = data; //Current iteration of the data
+                editedCategoryData = false;
+                editedCategoryID = 0;
 
                 document.getElementById('mainContent').innerHTML = output; //Update Content
             }           
@@ -219,7 +215,7 @@ class Developer
         let ID = document.getElementById('field3').value;
         if(ID)
         {
-            developer.getByID(ID);
+            category.getByID(ID);
         }
         else
         {
@@ -229,7 +225,7 @@ class Developer
 
     getByID(ID)
     {
-        fetch('/developer/' + ID, 
+        fetch('/category/' + ID, 
         {
             method: 'GET',
             cache: 'no-cache'
@@ -239,12 +235,12 @@ class Developer
         {       
             if(data === "ERROR")
             {
-                alert("Der Entwickler mit der ID " + ID + " wurde nicht gefunden!");
+                alert("Die Kategorie mit der ID " + ID + " wurde nicht gefunden!");
             }
             else
             {                
-                let output = templateEngine.showSinglePerson(data, ID); //Create HTML-Content
-                currentDeveloperData = data; //Current iteration of the data
+                let output = templateEngine.showSingleCategory(data, ID); //Create HTML-Content
+                currentCategoryData = data; //Current iteration of the data
                 
                 document.getElementById('mainContent').innerHTML = output; //Update Content
             }
@@ -253,5 +249,5 @@ class Developer
     }
 }
 
-developer = new Developer();
-document.getElementById('SW').addEventListener('click', developer.showDevelopers);
+category = new Category();
+document.getElementById('Category').addEventListener('click', category.showCategories);

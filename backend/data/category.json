@@ -1,0 +1,18 @@
+{
+   "1": {
+      "beschreibung": "Marginal",
+      "schweregrad": "1"
+   },
+   "2": {
+      "beschreibung": "Unerheblich",
+      "schweregrad": "3"
+   },
+   "3": {
+      "beschreibung": "Schwerwiegend",
+      "schweregrad": "8"
+   },
+   "4": {
+      "beschreibung": "Totaler Defekt",
+      "schweregrad": "10"
+   }
+}
