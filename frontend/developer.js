@@ -38,7 +38,7 @@ class Developer
         document.getElementById('mainUpperArea').style.display="flow";
         document.getElementById('mainLowerArea').style.display="flow";
 
-        //Vornamesfeld einblenden
+        //Vornamensfeld einblenden
         document.getElementById('field0').style.display = "inline";
         
         //Placeholder anpassen
