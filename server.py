@@ -29,6 +29,9 @@ if __name__ == '__main__':
         },       
         '/category': {
             'request.dispatch': cherrypy.dispatch.MethodDispatcher()
+        },       
+        '/reason': {
+            'request.dispatch': cherrypy.dispatch.MethodDispatcher()
         }
     }
 
@@ -39,6 +42,7 @@ if __name__ == '__main__':
     webapp.template = webapp.app.template_obj
     webapp.employee = webapp.app.employee_obj
     webapp.developer = webapp.app.developer_obj  
-    webapp.category = webapp.app.category_obj  
+    webapp.category = webapp.app.category_obj
+    webapp.reason = webapp.app.reason_obj
 
     cherrypy.quickstart(webapp, '/', conf) # Server starten    

@@ -1,0 +1,17 @@
+{
+   "1": {
+      "beschreibung": "Bedienfehler"
+   },
+   "2": {
+      "beschreibung": "Datenfehler"
+   },
+   "3": {
+      "beschreibung": "Frontend-Fehler"
+   },
+   "4": {
+      "beschreibung": "Backend-Fehler"
+   },
+   "5": {
+      "beschreibung": "Server nicht erreichbar"
+   }
+}

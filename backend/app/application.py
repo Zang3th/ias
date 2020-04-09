@@ -2,6 +2,7 @@ from . import template
 from . import employee
 from . import developer
 from . import category
+from . import reason
 
 class Application_cl():
     def __init__(self, currDir):        
@@ -12,3 +13,4 @@ class Application_cl():
         self.employee_obj = employee.Employee_cl(self.currDir)
         self.developer_obj = developer.Developer_cl(self.currDir)
         self.category_obj = category.Category_cl(self.currDir)
+        self.reason_obj = reason.Reason_cl(self.currDir)
