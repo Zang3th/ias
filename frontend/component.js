@@ -1,20 +1,20 @@
-var currentDeveloperData; //Current iteration of the data
-var editedDeveloperID; //Which ID are we currently editing
-var editedDeveloperData; //Are we currently editing -> did the data get edited?
+var currentComponentData; //Current iteration of the data
+var editedComponentID; //Which ID are we currently editing
+var editedComponentData; //Are we currently editing -> did the data get edited?
 
-class Developer
+class Component
 {
-    showDevelopers()
+    showComponents()
     {        
-        developer.showContent();      
+        component.showContent();      
     }
 
     showContent()
     {        
-        document.getElementById('mainHeader').innerHTML = "SW-Entwickler"; //Change header
+        document.getElementById('mainHeader').innerHTML = "Komponenten"; //Change header
 
-        //GET-Request for all the developer data
-        fetch('/developer/all', 
+        //GET-Request for all the component data
+        fetch('/component/all', 
         {
             method: 'GET',
             cache: 'no-cache'
@@ -22,13 +22,13 @@ class Developer
         .then((result) => result.json())
         .then((data) => 
         {    
-            let output = templateEngine.showPersonList(data); //Create HTML-Content
-            currentDeveloperData = data; //Current iteration of the data
+            let output = templateEngine.showComponentList(data); //Create HTML-Content
+            currentComponentData = data; //Current iteration of the data
            
             document.getElementById('mainContent').innerHTML = output;  //Update Content
 
-            developer.showFields();
-            developer.showButtons();
+            component.showFields();
+            component.showButtons();
         }) 
     }
 
@@ -38,18 +38,18 @@ class Developer
         document.getElementById('mainUpperArea').style.display="flow";
         document.getElementById('mainLowerArea').style.display="flow";
 
-        //Vornamensfeld einblenden
-        document.getElementById('field0').style.display = "inline";
+        //Field0 ausblenden
+        document.getElementById('field0').style.display = "none";
+
+        //Field1 einblenden
         document.getElementById('field1').style.display = "inline";
-        
-        //Placeholder anpassen
-        document.getElementById('field0').placeholder = "Vorname";
-        document.getElementById('field1').placeholder = "Name";
-        document.getElementById('field2').placeholder = "Funktion";
+
+        //Placeholder anpassen        
+        document.getElementById('field1').placeholder = "Beschreibung";
+        document.getElementById('field2').placeholder = "Projekt-ID";
         document.getElementById('field3').placeholder = "ID";
 
         //Alte Werte löschen
-        document.getElementById('field0').value = "";
         document.getElementById('field1').value = "";
         document.getElementById('field2').value = "";
         document.getElementById('field3').value = "";
@@ -64,10 +64,10 @@ class Developer
         utility.recreateNode(document.getElementById('getSomethingByID'));
 
         //Den Buttons neue Eventlistener zuteilen
-        document.getElementById('delete').addEventListener('click', developer.confirmDelete);    
-        document.getElementById('save').addEventListener('click', developer.confirmSave);
-        document.getElementById('edit').addEventListener('click', developer.confirmEdit);
-        document.getElementById('getSomethingByID').addEventListener('click', developer.confirmGetByID);
+        document.getElementById('delete').addEventListener('click', component.confirmDelete);    
+        document.getElementById('save').addEventListener('click', component.confirmSave);
+        document.getElementById('edit').addEventListener('click', component.confirmEdit);
+        document.getElementById('getSomethingByID').addEventListener('click', component.confirmGetByID);
 
         //Buttons anzeigen
         document.getElementById('edit').style.display="inline";
@@ -81,7 +81,7 @@ class Developer
         let ID = document.getElementById('field3').value;
         if(ID)
         {
-            developer.delete(ID);
+            component.delete(ID);
         }
         else
         {
@@ -91,7 +91,7 @@ class Developer
 
     delete(ID)
     {
-        fetch('/developer/' + ID, 
+        fetch('/component/' + ID, 
         {
             method: 'DELETE'
         })
@@ -100,13 +100,13 @@ class Developer
         {       
             if(data === "ERROR")
             {
-                alert("Der Entwickler mit der ID " + ID + " wurde nicht gefunden!");
+                alert("Die Komponente mit der ID " + ID + " wurde nicht gefunden!");
             }
             else
             {
                 
-                let output = templateEngine.showPersonList(data); //Create HTML-Content
-                currentDeveloperData = data; //Current iteration of the data
+                let output = templateEngine.showComponentList(data); //Create HTML-Content
+                currentComponentData = data; //Current iteration of the data
                 
                 document.getElementById('mainContent').innerHTML = output; //Update Content
             }
@@ -116,48 +116,47 @@ class Developer
 
     confirmSave()
     {
-        let vorname = document.getElementById('field0').value;
-        let name = document.getElementById('field1').value;
-        let funktion = document.getElementById('field2').value;
+        let beschreibung = document.getElementById('field1').value;
+        let projektID = document.getElementById('field2').value;
 
-        if(editedDeveloperData == true)
+        if(editedComponentData == true)
         {
-            if(vorname === "" || name === "" || funktion === "")
+            if(beschreibung === "" || projektID === "")
             {
                 alert("Bitte füllen Sie alle Felder aus!");
             }
             else
             {
-                developer.edit(vorname, name, funktion);
+                component.edit(beschreibung, projektID);
             }
         }
         else
         {
-            if(vorname === "" || name === "" || funktion === "")
+            if(beschreibung === "" || projektID === "")
             {
                 alert("Bitte füllen Sie alle Felder aus!");
             }
             else
             {
-                developer.save(vorname, name, funktion);
+                component.save(beschreibung, projektID);
             }
         }
         
     }
 
-    save(vorname, name, funktion)
+    save(beschreibung, projektID)
     {
-        let entwickler = vorname + "." + name + "." + funktion;
+        let komponente = beschreibung + "." + projektID;
 
-        fetch('/developer' + '/' + entwickler, 
+        fetch('/component' + '/' + komponente, 
         {
             method: 'POST'
         })
         .then((result) => result.json())
         .then((data) => 
         {    
-            let output = templateEngine.showPersonList(data); //Create HTML-Content
-            currentDeveloperData = data; //Current iteration of the data
+            let output = templateEngine.showComponentList(data); //Create HTML-Content
+            currentComponentData = data; //Current iteration of the data
             
             document.getElementById('mainContent').innerHTML = output; //Update Content
         }) 
@@ -168,14 +167,13 @@ class Developer
         let ID = document.getElementById('field3').value;        
         if(ID)
         {
-            if(currentDeveloperData[ID])
+            if(currentComponentData[ID])
             {
-                document.getElementById('field0').value = currentDeveloperData[ID].vorname;
-                document.getElementById('field1').value = currentDeveloperData[ID].name;
-                document.getElementById('field2').value = currentDeveloperData[ID].funktion;
+                document.getElementById('field1').value = currentComponentData[ID].beschreibung;
+                document.getElementById('field2').value = currentComponentData[ID].projektID;
 
-                editedDeveloperID = ID;
-                editedDeveloperData = true;
+                editedComponentID = ID;
+                editedComponentData = true;
             }
             else
             {
@@ -188,11 +186,11 @@ class Developer
         }  
     }
 
-    edit(vorname, name, funktion)
+    edit(beschreibung, projektID)
     {
-        let entwickler = editedDeveloperID + "." + vorname + "." + name + "." + funktion;
+        let komponente = editedComponentID + "." + beschreibung + "." + projektID;
 
-        fetch('/developer' + '/' + entwickler, 
+        fetch('/component' + '/' + komponente, 
         {
             method: 'PUT'
         })
@@ -201,14 +199,14 @@ class Developer
         {         
             if(data === "ERROR")
             {
-                alert("Der Entwickler mit der ID " + ID + "konnte nicht editiert werden!");
+                alert("Die Komponente mit der ID " + ID + "konnte nicht editiert werden!");
             }
             else
             {                
-                let output = templateEngine.showPersonList(data); //Create HTML-Content
-                currentDeveloperData = data; //Current iteration of the data
-                editedDeveloperData = false;
-                editedDeveloperID = 0;
+                let output = templateEngine.showComponentList(data); //Create HTML-Content
+                currentComponentData = data; //Current iteration of the data
+                editedComponentData = false;
+                editedComponentID = 0;
 
                 document.getElementById('mainContent').innerHTML = output; //Update Content
             }           
@@ -220,7 +218,7 @@ class Developer
         let ID = document.getElementById('field3').value;
         if(ID)
         {
-            developer.getByID(ID);
+            component.getByID(ID);
         }
         else
         {
@@ -230,7 +228,7 @@ class Developer
 
     getByID(ID)
     {
-        fetch('/developer/' + ID, 
+        fetch('/component/' + ID, 
         {
             method: 'GET',
             cache: 'no-cache'
@@ -240,12 +238,12 @@ class Developer
         {       
             if(data === "ERROR")
             {
-                alert("Der Entwickler mit der ID " + ID + " wurde nicht gefunden!");
+                alert("Die Komponente mit der ID " + ID + " wurde nicht gefunden!");
             }
             else
             {                
-                let output = templateEngine.showSinglePerson(data, ID); //Create HTML-Content
-                currentDeveloperData = data; //Current iteration of the data
+                let output = templateEngine.showSingleComponent(data, ID); //Create HTML-Content
+                currentComponentData = data; //Current iteration of the data
                 
                 document.getElementById('mainContent').innerHTML = output; //Update Content
             }
@@ -254,5 +252,5 @@ class Developer
     }
 }
 
-developer = new Developer();
-document.getElementById('SW').addEventListener('click', developer.showDevelopers);
+component = new Component();
+document.getElementById('Component').addEventListener('click', component.showComponents);

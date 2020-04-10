@@ -38,8 +38,9 @@ class Employee
         document.getElementById('mainUpperArea').style.display="flow";
         document.getElementById('mainLowerArea').style.display="flow";
 
-        //Vornamensfeld einblenden
+        //Felder einblenden
         document.getElementById('field0').style.display = "inline";
+        document.getElementById('field1').style.display = "inline";
 
         //Placeholder anpassen
         document.getElementById('field0').placeholder = "Vorname";

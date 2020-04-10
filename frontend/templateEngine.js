@@ -150,6 +150,50 @@ class TemplateEngine
         `;
         return output;
     }
+
+    showComponentList(data)
+    {
+        let output = '';
+        let length = Object.keys(data).length;
+        let max_val = Object.keys(data)[length - 1];    
+
+        for(let i = 1; i <= max_val; i++)
+        {
+            if(data[i])
+            {
+                let template_s = new String(this.template);
+                template_s = template_s.replace("data0", i);
+                template_s = template_s.replace("data1", data[i].beschreibung);
+                template_s = template_s.replace("data2", "");
+                template_s = template_s.replace("data3", " Projekt-ID: ");
+                template_s = template_s.replace("data4", data[i].projektID);
+
+                output += 
+                `  
+                    ${template_s}
+                `;
+            }    
+        }
+        return output;
+    }
+
+    showSingleComponent(data, ID)
+    {
+        let output = '';
+        let template_s = new String(this.template);
+
+        template_s = template_s.replace("data0", ID);
+        template_s = template_s.replace("data1", data.beschreibung);
+        template_s = template_s.replace("data2", "");
+        template_s = template_s.replace("data3", " Projekt-ID: ");
+        template_s = template_s.replace("data4", data.projektID);
+
+        output += 
+        `  
+            ${template_s}
+        `;
+        return output;
+    }
 }
 
 templateEngine = new TemplateEngine();

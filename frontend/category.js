@@ -38,8 +38,11 @@ class Category
         document.getElementById('mainUpperArea').style.display="flow";
         document.getElementById('mainLowerArea').style.display="flow";
 
-        //Vornamesfeld ausblenden
+        //Field0 ausblenden
         document.getElementById('field0').style.display = "none";
+
+        //Field1 einblenden
+        document.getElementById('field1').style.display = "inline";
 
         //Placeholder anpassen        
         document.getElementById('field1').placeholder = "Beschreibung";

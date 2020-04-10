@@ -1,0 +1,26 @@
+{
+   "1": {
+      "beschreibung": "Angebote",
+      "projektID": "2"
+   },
+   "2": {
+      "beschreibung": "Lagerlogistik",
+      "projektID": "1"
+   },
+   "3": {
+      "beschreibung": "Kundenstamm",
+      "projektID": "2"
+   },
+   "4": {
+      "beschreibung": "Lieferantenstamm",
+      "projektID": "4"
+   },
+   "5": {
+      "beschreibung": "Artikelstamm",
+      "projektID": "3"
+   },
+   "6": {
+      "beschreibung": "Finanzen",
+      "projektID": "6"
+   }
+}
