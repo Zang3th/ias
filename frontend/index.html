@@ -11,8 +11,8 @@
             <div id="pageHeader">Bug Tracker | Tim Krüger | 1197031</div>
             <div id="container-2">
                 <div id="sidebar">
-                    <button id="Error">Fehlererfassung</button>
-                    <button id="Resolve">Fehlerbehebung</button>
+                    <button id="ErrorCreation">Fehlererfassung</button>
+                    <button id="ErrorResolve">Fehlerbehebung</button>
                     <button id="QS">QS-Mitarbeiter</button>
                     <button id="SW">SW-Entwickler</button>
                     <button id="Category">Fehlerkategorien</button>
@@ -31,7 +31,16 @@
                             <input class="listField" type="text" id="field2"></input>  
                         </div>
                         <div id=upperButtons>
-                            <button class="listButton" id="save">Speichern</button>  
+                            <button class="listButton" id="save">Speichern</button>
+                            <div class="listSelect" id="ListSelect0">Wer hat den Fehler gefunden?
+                                <select class="Select" id="select0"></select>
+                            </div>
+                            <div class="listSelect" id="ListSelect1">Wo ist der Fehler aufgetreten?
+                                <select class="Select" id="select1"></select>
+                            </div>
+                            <div class="listSelect" id="ListSelect2">Wie schwerwiegend ist der Fehler?
+                                <select class="Select" id="select2"></select>
+                            </div> 
                         </div>                      
                     </div>         
                     <div id="mainLowerArea">           
@@ -41,7 +50,8 @@
                         <div id="lowerButtons">                        
                             <button class="listButton" id="edit">Bearbeiten</button>
                             <button class="listButton" id="delete">Löschen</button>                        
-                            <button class="listButton" id="getSomethingByID">Anfordern</button>              
+                            <button class="listButton" id="getSomethingByID">Anfordern</button>
+                            <button class="listButton" id="save2">Speichern</button>              
                         </div>
                     </div> 
                 </div>  
@@ -54,5 +64,6 @@
         <script src="category.js"></script>  
         <script src="reason.js"></script>
         <script src="component.js"></script>
+        <script src="errorCreation.js"></script>
     </body>    
 </html>

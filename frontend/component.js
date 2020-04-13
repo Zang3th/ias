@@ -34,15 +34,22 @@ class Component
 
     showFields()
     {
+        //Selects ausblenden
+        document.getElementById('ListSelect0').style.display = "none";
+        document.getElementById('ListSelect1').style.display = "none";
+        document.getElementById('ListSelect2').style.display = "none";
+
         //Felder anzeigen
         document.getElementById('mainUpperArea').style.display="flow";
         document.getElementById('mainLowerArea').style.display="flow";
 
-        //Field0 ausblenden
+        //Felder ausblenden
         document.getElementById('field0').style.display = "none";
 
-        //Field1 einblenden
+        //Felder einblenden
         document.getElementById('field1').style.display = "inline";
+        document.getElementById('field2').style.display = "inline";
+        document.getElementById('field3').style.display = "inline";
 
         //Placeholder anpassen        
         document.getElementById('field1').placeholder = "Beschreibung";
@@ -73,6 +80,7 @@ class Component
         document.getElementById('edit').style.display="inline";
         document.getElementById('delete').style.display="inline";
         document.getElementById('save').style.display="inline";
+        document.getElementById('save2').style.display="none";
         document.getElementById('getSomethingByID').style.display="inline";
     }    
 

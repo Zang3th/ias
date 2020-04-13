@@ -84,6 +84,24 @@ button{
     color: #b3b3b3;    
 }
 
+.listSelect{
+    font-size: 22px;
+    margin-left: 15%;
+}
+
+.Select{
+    width: 35%;
+    padding: 5px;    
+    margin: 10px;
+    border-radius: 0px 5px 0px 5px;
+    border-color: #3b3b52;
+    background-color: #3b3b52;
+    font-family: 'Baloo 2', cursive;   
+    font-size: 22px;
+    color: #b3b3b3; 
+    text-align: center; 
+}
+
 button:hover{
     background-color: #1b2029;
     color: #d3cccc;

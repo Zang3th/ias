@@ -34,6 +34,11 @@ class Reason
 
     showFields()
     {
+        //Selects ausblenden
+        document.getElementById('ListSelect0').style.display = "none";
+        document.getElementById('ListSelect1').style.display = "none";
+        document.getElementById('ListSelect2').style.display = "none";
+
         //Felder anzeigen
         document.getElementById('mainUpperArea').style.display="flow";
         document.getElementById('mainLowerArea').style.display="flow";
@@ -41,6 +46,10 @@ class Reason
         //Felder ausblenden
         document.getElementById('field0').style.display = "none";
         document.getElementById('field1').style.display = "none";
+
+        //Felder einblenden
+        document.getElementById('field2').style.display = "inline";
+        document.getElementById('field3').style.display = "inline";
 
         //Placeholder anpassen        
         document.getElementById('field2').placeholder = "Beschreibung";
@@ -69,6 +78,7 @@ class Reason
         document.getElementById('edit').style.display="inline";
         document.getElementById('delete').style.display="inline";
         document.getElementById('save').style.display="inline";
+        document.getElementById('save2').style.display="none";
         document.getElementById('getSomethingByID').style.display="inline";
     }    
 

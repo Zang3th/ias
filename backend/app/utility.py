@@ -9,6 +9,12 @@ def parseData(self, data_s, numberOfArraySlots):
             data_arr = ["a", "b", "c"] # Array with 3 placeholders 
         elif numberOfArraySlots == 4:
             data_arr = ["a", "b", "c", "d"] # Array with 4 placeholders
+        elif numberOfArraySlots == 5:
+            data_arr = ["a", "b", "c", "d", "e"] # Array with 5 placeholders
+        elif numberOfArraySlots == 6:
+            data_arr = ["a", "b", "c", "d", "e", "f"] # Array with 6 placeholders
+        elif numberOfArraySlots == 7:
+            data_arr = ["a", "b", "c", "d", "e", "f", "g"] # Array with 7 placeholders
         else:
             print("Ungültige Anzahl an Array Slots angegeben!") 
             return "Error"
