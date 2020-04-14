@@ -4,6 +4,7 @@ from . import developer
 from . import category
 from . import reason
 from . import component
+from . import project
 from . import error
 
 class Application_cl():
@@ -17,4 +18,5 @@ class Application_cl():
         self.category_obj = category.Category_cl(self.currDir)
         self.reason_obj = reason.Reason_cl(self.currDir)
         self.component_obj = component.Component_cl(self.currDir)
+        self.project_obj = project.Project_cl(self.currDir)
         self.error_obj = error.Error_cl(self.currDir)

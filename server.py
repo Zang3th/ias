@@ -36,6 +36,9 @@ if __name__ == '__main__':
         '/component': {
             'request.dispatch': cherrypy.dispatch.MethodDispatcher()
         },       
+        '/project': {
+            'request.dispatch': cherrypy.dispatch.MethodDispatcher()
+        },       
         '/error': {
             'request.dispatch': cherrypy.dispatch.MethodDispatcher()
         }
@@ -51,6 +54,7 @@ if __name__ == '__main__':
     webapp.category = webapp.app.category_obj
     webapp.reason = webapp.app.reason_obj
     webapp.component = webapp.app.component_obj
+    webapp.project = webapp.app.project_obj
     webapp.error = webapp.app.error_obj
 
     cherrypy.quickstart(webapp, '/', conf) # Server starten    
