@@ -27,11 +27,15 @@ body{
 #sidebar{
     width: 10%;
     height: 90%;
-    color: #d3cccc;
     text-align: center;
-    border: 2px solid #d3cccc;
+    color: #d3cccc;
     margin-left: 20%;
     display: block;
+}
+
+.sidebar{
+    padding: 5px;    
+    border: 2px solid #d3cccc;    
 }
 
 #main{       
