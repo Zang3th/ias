@@ -38,6 +38,10 @@ body{
     border: 2px solid #d3cccc;    
 }
 
+#upperSidebar{
+    margin-bottom: 20px;
+}
+
 #main{       
     width: 49%;
     color: #d3cccc;
