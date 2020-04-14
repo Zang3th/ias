@@ -1,4 +1,4 @@
-def parseData(self, data_s, numberOfArraySlots):
+def parseData(self, data_s, numberOfArraySlots, separationChar = "."):
         s_len = len(data_s) # Number of characters in the string
         l = 0 # Index for the data array
         entry = "" # The entry that we are pushing into the array
@@ -20,7 +20,7 @@ def parseData(self, data_s, numberOfArraySlots):
             return "Error"
 
         for i in range(0, s_len):
-            if data_s[i] != ".": # Check for separation character
+            if data_s[i] != separationChar: # Check for separation character
                 entry += data_s[i] # Push character into entry string                
             else:
                 data_arr[l] = entry # Push string into array

@@ -1,22 +1,41 @@
+var currentErrorData;
+
 class errorCreation
 {
-    showErrors()
+    constructor()
     {
+        this.getSelectionData();
+    }
+
+    showErrors()
+    {        
         errorC.showContent();
     }
 
     showContent()
     {
         document.getElementById('mainHeader').innerHTML = "Fehlererfassung"; //Change header
-        document.getElementById('mainContent').innerHTML = "Content";  //Update Content
 
+        //GET-Request for all the error data
+        fetch('/error', 
+        {
+            method: 'GET',
+            cache: 'no-cache'
+        })
+        .then((result) => result.json())
+        .then((data) => 
+        {    
+            let output = templateEngine.showUnresolvedErrorList(data); //Create HTML-Content
+            currentErrorData = data; //Current iteration of the data
 
-        errorC.getCreationData();
-        errorC.showFields();
-        errorC.showButtons();
+            document.getElementById('mainContent').innerHTML = output;  //Update Content
+
+            errorC.showFields();
+            errorC.showButtons();
+        })           
     }
 
-    getCreationData()
+    getSelectionData()
     {
         //GET-Request for all the employee data
         fetch('/employee/all', 
@@ -69,7 +88,7 @@ class errorCreation
         document.getElementById('mainUpperArea').style.display="flow";
         document.getElementById('mainLowerArea').style.display="flow";
 
-        //Felder einblenden
+        //Felder ausblenden
         document.getElementById('field0').style.display = "none";
         document.getElementById('field1').style.display = "none";
         document.getElementById('field2').style.display = "none";
@@ -135,24 +154,28 @@ class errorCreation
         errorC.saveError(mit_ID, komp_ID, kat_ID);
     }
 
-    saveError(mitarbeiter, komponente, kategorie)
+    saveError(mitarbeiter_ID, komponente_ID, kategorie_ID)
     {
         let d = new Date();
         let month = d.getMonth() + 1;
-        let date = d.getDate() + "-" + month + "-" + d.getFullYear();
+        let date = d.getDate() + "." + month + "." + d.getFullYear();
         let status = "Offen";
         let entwickler = "Nicht zugewiesen";
         let ursache = "Nicht zugewiesen";
-        let fehler = date + "." + mitarbeiter + "." + komponente + "." + kategorie + "." + status + "." + entwickler + "." + ursache;
+        let fehler = date + ":" + mitarbeiter_ID + ":" + komponente_ID + ":" + kategorie_ID + ":" + status + ":" + entwickler + ":" + ursache;
     
         fetch('/error' + '/' + fehler, 
         {
             method: 'POST'
         })
         .then((result) => result.json())
-        .then((data) => {                
-    
+        .then((data) => 
+        {                
             console.log(data);
+            let output = templateEngine.showUnresolvedErrorList(data); //Create HTML-Content
+            currentErrorData = data; //Current iteration of the data
+
+            document.getElementById('mainContent').innerHTML = output;  //Update Content
         })
     }
 }
