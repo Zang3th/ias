@@ -1,47 +1,52 @@
 {
    "1": {
-      "datum": "14.4.2020",
+      "datum": "30.5.2020",
       "mitarbeiter": "1",
       "komponente": "1",
       "kategorie": "1",
-      "status": "Offen",
-      "entwickler": "Nicht zugewiesen",
-      "ursache": "Nicht zugewiesen"
+      "status": "Behoben",
+      "entwickler": "6",
+      "ursache": "5",
+      "datum_2": "30.5.2020"
    },
    "2": {
-      "datum": "14.4.2020",
-      "mitarbeiter": "6",
-      "komponente": "4",
+      "datum": "30.5.2020",
+      "mitarbeiter": "2",
+      "komponente": "3",
       "kategorie": "3",
       "status": "Offen",
       "entwickler": "Nicht zugewiesen",
-      "ursache": "Nicht zugewiesen"
+      "ursache": "Nicht zugewiesen",
+      "datum_2": "Nicht zugewiesen"
    },
    "3": {
-      "datum": "14.4.2020",
-      "mitarbeiter": "7",
-      "komponente": "5",
-      "kategorie": "4",
-      "status": "Offen",
-      "entwickler": "Nicht zugewiesen",
-      "ursache": "Nicht zugewiesen"
-   },
-   "4": {
-      "datum": "14.4.2020",
+      "datum": "30.5.2020",
       "mitarbeiter": "4",
-      "komponente": "6",
+      "komponente": "5",
       "kategorie": "2",
       "status": "Offen",
       "entwickler": "Nicht zugewiesen",
-      "ursache": "Nicht zugewiesen"
+      "ursache": "Nicht zugewiesen",
+      "datum_2": "Nicht zugewiesen"
    },
-   "5": {
-      "datum": "14.4.2020",
-      "mitarbeiter": "8",
-      "komponente": "2",
+   "4": {
+      "datum": "30.5.2020",
+      "mitarbeiter": "7",
+      "komponente": "6",
       "kategorie": "4",
       "status": "Offen",
       "entwickler": "Nicht zugewiesen",
-      "ursache": "Nicht zugewiesen"
+      "ursache": "Nicht zugewiesen",
+      "datum_2": "Nicht zugewiesen"
+   },
+   "5": {
+      "datum": "29.5.2020",
+      "mitarbeiter": "4",
+      "komponente": "2",
+      "kategorie": "3",
+      "status": "Behoben",
+      "entwickler": "1",
+      "ursache": "2",
+      "datum_2": "31.5.2020"
    }
 }

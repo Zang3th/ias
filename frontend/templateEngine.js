@@ -278,6 +278,70 @@ class TemplateEngine
         }
         return output;
     }
+
+    showResolvedErrorList(data)
+    {
+        let output = '';
+        let length = Object.keys(data).length;
+        let max_val = Object.keys(data)[length - 1];    
+
+        for(let i = 1; i <= max_val; i++)
+        {
+            if(data[i])
+            {
+                let index = i;
+                let status = data[index].status;
+
+                if(status === "Offen")
+                {
+                    let datum = data[index].datum;
+
+                    let komponente_ID = data[index].komponente;
+                    let komponente = currentComponentData[komponente_ID].beschreibung;
+
+                    let kategorie_ID = data[index].kategorie;
+                    let kategorie = currentCategoryData[kategorie_ID].beschreibung;                
+
+                    let template_s = new String(this.template);
+                    template_s = template_s.replace("data0", i);
+                    template_s = template_s.replace("data1", "Fehler: " + status);
+                    template_s = template_s.replace("data2", "seit " + datum);
+                    template_s = template_s.replace("data3", "in " + komponente);
+                    template_s = template_s.replace("data4", ": " + kategorie);
+
+                    output += 
+                    `  
+                        ${template_s}
+                    `;
+                }
+                else if(status === "Behoben")
+                {
+                    let datum_2 = data[index].datum_2;
+
+                    let entwickler_ID = data[index].entwickler;
+                    let vorname = currentDeveloperData[entwickler_ID].vorname;
+                    let name = currentDeveloperData[entwickler_ID].name;
+                    let entwickler = vorname + " " + name;
+
+                    let ursacheID = data[index].ursache;
+                    let ursache = currentReasonData[ursacheID].beschreibung;
+
+                    let template_s = new String(this.template);
+                    template_s = template_s.replace("data0", i);
+                    template_s = template_s.replace("data1", "Fehler: " + status);
+                    template_s = template_s.replace("data2", "am " + datum_2);
+                    template_s = template_s.replace("data3", " von " + entwickler);
+                    template_s = template_s.replace("data4", "(" + ursache + ")");
+
+                    output += 
+                    `  
+                        ${template_s}
+                    `;
+                }    
+            }    
+        }
+        return output;
+    }
 }
 
 templateEngine = new TemplateEngine();

@@ -38,6 +38,9 @@ class Reason
         document.getElementById('ListSelect0').style.display = "none";
         document.getElementById('ListSelect1').style.display = "none";
         document.getElementById('ListSelect2').style.display = "none";
+        document.getElementById('ListSelect3').style.display = "none";
+        document.getElementById('ListSelect4').style.display = "none";
+        document.getElementById('ListSelect5').style.display = "none";
 
         //Felder anzeigen
         document.getElementById('mainUpperArea').style.display="flow";

@@ -39,6 +39,10 @@ class Utility
                 {                    
                     option.innerHTML = data[i].beschreibung;
                 }
+                else if (opt == 3)
+                {
+                    option.innerHTML = i;
+                }
                 select_elem.appendChild(option);
             }
         }

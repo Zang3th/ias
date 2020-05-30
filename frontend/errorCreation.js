@@ -83,6 +83,9 @@ class errorCreation
         document.getElementById('ListSelect0').style.display = "inline";
         document.getElementById('ListSelect1').style.display = "inline";
         document.getElementById('ListSelect2').style.display = "inline";
+        document.getElementById('ListSelect3').style.display = "none";
+        document.getElementById('ListSelect4').style.display = "none";
+        document.getElementById('ListSelect5').style.display = "none";
 
         //Felder anzeigen
         document.getElementById('mainUpperArea').style.display="flow";
@@ -162,7 +165,8 @@ class errorCreation
         let status = "Offen";
         let entwickler = "Nicht zugewiesen";
         let ursache = "Nicht zugewiesen";
-        let fehler = date + ":" + mitarbeiter_ID + ":" + komponente_ID + ":" + kategorie_ID + ":" + status + ":" + entwickler + ":" + ursache;
+        let date2 = "Nicht zugewiesen";
+        let fehler = date + ":" + mitarbeiter_ID + ":" + komponente_ID + ":" + kategorie_ID + ":" + status + ":" + entwickler + ":" + ursache + ":" + date2;
     
         fetch('/error' + '/' + fehler, 
         {
@@ -171,7 +175,6 @@ class errorCreation
         .then((result) => result.json())
         .then((data) => 
         {                
-            console.log(data);
             let output = templateEngine.showUnresolvedErrorList(data); //Create HTML-Content
             currentErrorData = data; //Current iteration of the data
 
