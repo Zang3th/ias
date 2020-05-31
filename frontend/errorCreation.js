@@ -32,7 +32,9 @@ class errorCreation
 
             errorC.showFields();
             errorC.showButtons();
-        })           
+        })      
+        
+        errorC.getSelectionData();
     }
 
     getSelectionData()
@@ -47,6 +49,7 @@ class errorCreation
         .then((data) => 
         {    
             currentEmployeeData = data; //Current iteration of the data
+            document.getElementById('select0').options.length = 0;
             utility.createSelectList(currentEmployeeData, 'select0', 0);
         }) 
 
@@ -60,6 +63,7 @@ class errorCreation
         .then((data) => 
         {    
             currentComponentData = data; //Current iteration of the data
+            document.getElementById('select1').options.length = 0;
             utility.createSelectList(currentComponentData, 'select1', 1);
         })
 
@@ -73,6 +77,7 @@ class errorCreation
         .then((data) => 
         {    
             currentCategoryData = data; //Current iteration of the data
+            document.getElementById('select2').options.length = 0;
             utility.createSelectList(currentCategoryData, 'select2', 2);
         }) 
     }

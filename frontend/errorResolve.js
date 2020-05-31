@@ -4,12 +4,12 @@ class errorResolve
 {
     constructor()
     {
-       this.getSelectionData();
+        this.getSelectionData();
     }
 
     showErrors()
     {        
-        errorR.showContent();
+        errorR.showContent();        
     }
 
     showContent()
@@ -27,13 +27,16 @@ class errorResolve
         {    
             let output = templateEngine.showResolvedErrorList(data); //Create HTML-Content
             currentErrorData = data; //Current iteration of the data
+            document.getElementById('select3').options.length = 0;
             utility.createSelectList(currentErrorData, 'select3', 3);
 
             document.getElementById('mainContent').innerHTML = output;  //Update Content
 
             errorR.showFields();
             errorR.showButtons();
-        })           
+        })    
+        
+        errorR.getSelectionData();
     }
 
     getSelectionData()
@@ -72,6 +75,7 @@ class errorResolve
         .then((data) => 
         {    
             currentDeveloperData = data; //Current iteration of the data
+            document.getElementById('select4').options.length = 0;
             utility.createSelectList(currentDeveloperData, 'select4', 0);
         }) 
 
@@ -85,6 +89,7 @@ class errorResolve
         .then((data) => 
         {    
             currentReasonData = data; //Current iteration of the data
+            document.getElementById('select5').options.length = 0;
             utility.createSelectList(currentReasonData, 'select5', 2);
         }) 
     }

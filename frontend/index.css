@@ -94,15 +94,13 @@ button{
 
 .listSelect{
     font-size: 22px;
-    margin-left: 10%;
+    margin: 20%;
 }
 
 .Select{
-    width: 35%;
-    padding: 5px;    
+    padding: 5px;  
     margin: 10px;
-    margin-left: 8%;
-    margin-right: 10%;
+    width: 30%;  
     border-radius: 0px 5px 0px 5px;
     border-color: #3b3b52;
     background-color: #3b3b52;

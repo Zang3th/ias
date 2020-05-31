@@ -14,10 +14,10 @@
       "mitarbeiter": "2",
       "komponente": "3",
       "kategorie": "3",
-      "status": "Offen",
-      "entwickler": "Nicht zugewiesen",
-      "ursache": "Nicht zugewiesen",
-      "datum_2": "Nicht zugewiesen"
+      "status": "Behoben",
+      "entwickler": "2",
+      "ursache": "2",
+      "datum_2": "31.5.2020"
    },
    "3": {
       "datum": "30.5.2020",
@@ -47,6 +47,16 @@
       "status": "Behoben",
       "entwickler": "1",
       "ursache": "2",
+      "datum_2": "31.5.2020"
+   },
+   "6": {
+      "datum": "31.5.2020",
+      "mitarbeiter": "8",
+      "komponente": "4",
+      "kategorie": "4",
+      "status": "Behoben",
+      "entwickler": "5",
+      "ursache": "4",
       "datum_2": "31.5.2020"
    }
 }

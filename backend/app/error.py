@@ -23,7 +23,8 @@ class Error_cl():
         return self.database_obj.add(newEntry)        
 
     def changeExistingEntry(self, error_p):
-        error_arr = utility.parseData(self, error_p, 5, ":")        
+        error_arr = utility.parseData(self, error_p, 5, ":") 
+        self.database_obj.readInFile()       
         oldEntry = self.database_obj.data_json[error_arr[0]]
         newEntry =  {'datum': oldEntry["datum"], 'mitarbeiter': oldEntry["mitarbeiter"], 'komponente': oldEntry["komponente"], 'kategorie': oldEntry["kategorie"], 'status': error_arr[1], 'entwickler': error_arr[2], 'ursache': error_arr[3], 'datum_2': error_arr[4]} 
         return self.database_obj.edit(newEntry, error_arr[0])
